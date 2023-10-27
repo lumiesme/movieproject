@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="row">
+        <div class="col-8 mt-2 mx-auto">
+            <h3>Country Details</h3>
+                <table class="table table-bordered">
+                        <table class="table table-bordered">
+                            <tr>
+                            <td>Common name</td>
+                            <td>{{ country.common }}</td>
+                            </tr>
+                            <tr>
+                    <td>Official name</td>
+                    <td>{{ country.official }}</td>
+                </tr>
+                <tr>
+                    <td>Capital</td>
+                    <td>{{ country.capital }}</td>
+                </tr>
+                <tr>
+                    <td>Region</td>
+                    <td>{{ country.region }}</td>
+                </tr>
+                <tr>
+                    <td>Subregion</td>
+                    <td>{{ country.subregion }}</td>
+                </tr>
+                <tr>
+                    <td>Flag</td>
+                    <td><img src="{{ country.flag }}" alt="Country Flag" style="max-width: 100px"></td>
+                </tr>
+              <tr>
+    <td>Map</td>
+    <td><a href="{{ country.map }}" target="_blank">Open Map</a></td>
+</tr>
+            </table>
+                </table>
+            <p class="text-end">
+                <a href="{% url 'movieapp:country_list' %}">List of countries</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

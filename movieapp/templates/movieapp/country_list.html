@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6 mx-auto">
+                <h3>List of countries</h3>
+  <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1">&laquo;</a>   <!--laquo teeb 2 noolekest(topeltnooled) vasakulevms, ja lsaquo teeb teisele poole-->
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&lsaquo;</a>
+            </li>
+        {% endif %}
+
+        <li class="page-link text-dark">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </li>
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">&rsaquo;</a>  <!--naitab jrg lehte 8hekordne nooleke-->
+            </li>
+             <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+            </li>
+        {% endif %}
+
+  </ul>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th>#</th>
+                            <th>Country</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for country in countries %}
+                            <tr>
+                                <td style="text-align: right", width="15">{{ page_obj.start_index|add:forloop.counter0  }}</td>
+                                <td><a href="{% url 'movieapp:country_detail' pk=country.id %}">{{ country.common }}</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
